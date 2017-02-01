@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calculo de Salario</string>
+    <string name="tv1">Digite seu salário</string>
+    <string name="tv2">Qual é o seu percentual?</string>
+    <string name="rb40">40%</string>
+    <string name="rb45">45%</string>
+    <string name="rb50">50%</string>
+    <string name="bt">Calcular novo salario</string>
+</resources>

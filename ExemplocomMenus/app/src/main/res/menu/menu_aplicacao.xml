@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MenusActivity">
+
+    <item android:id="@+id/item_novo" android:title="Novo"></item>
+    <item android:id="@+id/item_abrir" android:title="Abrir"></item>
+    <item android:id="@+id/item_salvar" android:title="Salvar" >
+        <menu>
+            <item android:id="@+id/item_salvar_copia" android:title="Salvar Cópia"></item>
+            <item android:id="@+id/item_salvar_como" android:title="Salvar como"></item>
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Lista de Contatos</string>
+    <string name="tv1">Escolha um contato:</string>
+    <string-array name="contatos">
+        <item>Aline</item>
+        <item>Lucas</item>
+        <item>Rafael</item>
+        <item>Gabriela</item>
+        <item>Silvana</item>
+    </string-array>
+</resources>
