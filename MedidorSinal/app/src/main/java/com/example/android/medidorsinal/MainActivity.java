@@ -10,9 +10,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.CellInfo;
-import android.telephony.CellInfoCdma;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
+import android.telephony.CellInfoWcdma;
 import android.telephony.PhoneStateListener;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
@@ -77,40 +77,38 @@ public class MainActivity extends AppCompatActivity {
     protected void usaCellInfo(){
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        int i = 0;
+            TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
-            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
             @Override
             public void run() {
                 for (CellInfo info : telephonyManager.getAllCellInfo()) {
-                    if (info instanceof CellInfoGsm) {
-                        i+=1;
-                        final int gsm = ((CellInfoGsm) info).getCellSignalStrength().getDbm();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                tv1.setText(String.valueOf(gsm));
-                            }
-                        });
-                    } else if (info instanceof CellInfoCdma) {
-                        i+=1;
-                        final int cdma = ((CellInfoCdma) info).getCellSignalStrength().getDbm();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                tv1.setText(String.valueOf(cdma));
-                            }
-                        });
-                    } else if (info instanceof CellInfoLte) {
-                        i+=1;
-                        final int lte = ((CellInfoLte) info).getCellSignalStrength().getDbm();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                tv1.setText(String.valueOf(lte));
-                            }
-                        });
+                    if(info != null) {
+                        if (info instanceof CellInfoGsm) {
+                            final int gsm = ((CellInfoGsm) info).getCellSignalStrength().getDbm();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tv1.setText(String.valueOf(gsm));
+                                }
+                            });
+                        } else if (info instanceof CellInfoWcdma) {
+                            final int wcdma = ((CellInfoWcdma) info).getCellSignalStrength().getDbm();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tv1.setText(String.valueOf(wcdma));
+                                }
+                            });
+                        } else if (info instanceof CellInfoLte) {
+                            final int lte = ((CellInfoLte) info).getCellSignalStrength().getDbm();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tv1.setText(String.valueOf(lte));
+                                }
+                            });
+                        }
                     }
                 }
             }
